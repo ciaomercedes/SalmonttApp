@@ -41,8 +41,8 @@ salmonttApp/
   └── centros.txt           # Archivo externo `centros`
 ```
 ### 📦 Paquete: `ui`
-- **`Main`**: Clase que orquesta y crea instancias de las clases del programa. Muestra los datos en consola utilizando
-  el método `toString()` y, paralelamente, nos crea y descarga una lista con las existencias actuales de los productos.
+- **`Main`**: Clase que orquesta y crea instancias de las clases del programa. Muestra los resultados por consola y, 
+paralelamente, nos crea y descarga una lista con las existencias actuales de los productos.
 
 ### 📦 Paquete: `model`
 
