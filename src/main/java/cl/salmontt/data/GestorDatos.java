@@ -41,8 +41,14 @@ public class GestorDatos {
                 // Separar con punto y coma
                 String[] datos = linea.split(";");
 
-                // Crear objeto
-                CentroCultivo centro = new CentroCultivo(
+                //validación
+                if (datos.length != 7) { //si la linea no tiene 7 datos
+                    System.out.println("Linea ignoradda por formato incorrecto: " + linea); //avisa cual linea es
+                    continue; // se la salta y no causa error
+                }
+
+
+                CentroCultivo centro = new CentroCultivo( // Crear objeto
                         datos[0],                    // idCentro
                         datos[1],                    // nombre
                         datos[2],                    // comuna
@@ -52,7 +58,7 @@ public class GestorDatos {
                         datos[6]                     // tipoSalmon
                 );
 
-                // Guardarlo en la lista
+                //Guardarlo en la lista
                 lista.add(centro);
             }
 
@@ -70,6 +76,7 @@ public class GestorDatos {
         inventario.add(new Producto(1001, "Salmón", "Atlántico", "Los Lagos", true, 7990.00, 850));
         inventario.add(new Producto(1002, "Salmón", "Coho", "Aysén", true, 8990.00, 745));
         inventario.add(new Producto(1003, "Salmón", "Trucha", "Los Ríos", false, 6590, 1055));
+        inventario.add(new Producto(1004, "Salmón", "Trucha", "Los Lagos", false, 7370, 1002));
 
         return inventario;
     }

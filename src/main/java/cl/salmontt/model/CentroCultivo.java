@@ -40,6 +40,12 @@ public class CentroCultivo {
     }
 
     //getter y setter para los filtros en la clase principal
+
+
+    public String getNombre() {
+        return nombre;
+    }
+
     public String getTipoSalmon() {
         return tipoSalmon;
     }
@@ -48,6 +54,9 @@ public class CentroCultivo {
         return toneladas;
     }
 
+    public String getIdCentro() {
+        return idCentro;
+    }
 
     /**
      * Devuelve una representacion textual del centro,

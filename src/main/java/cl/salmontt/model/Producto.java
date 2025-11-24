@@ -1,5 +1,9 @@
 package cl.salmontt.model;
 
+/**
+* Clase donde damos los atributos a los productos que forman parte del inventario ingresado
+ */
+
 public class Producto {
 
     //Atributos privados
@@ -32,6 +36,64 @@ public class Producto {
         this.stock = stock;
     }
 
+    //GETTERS Y SETTERS
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getLocalidad() {
+        return localidad;
+    }
+
+    public void setLocalidad(String localidad) {
+        this.localidad = localidad;
+    }
+
+    public boolean isArtesanal() {
+        return artesanal;
+    }
+
+    public void setArtesanal(boolean artesanal) {
+        this.artesanal = artesanal;
+    }
+
+    public double getPrecioUnitario() {
+        return precioUnitario;
+    }
+
+    public void setPrecioUnitario(double precioUnitario) {
+        this.precioUnitario = precioUnitario;
+    }
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
     //muestro en texto con el metodo toString la lista de productos
     @Override
     public String toString() {
@@ -44,5 +106,4 @@ public class Producto {
                 "\nExistencias: " + stock + " unidades" +
                 "\n----------------------------------------------------------------------------";
     }
-
 }
