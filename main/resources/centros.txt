@@ -1,0 +1,7 @@
+C001;Centro A;Puerto Montt;1200;35.5;30.2;Atlantico
+C002;Centro B;Chonchi;1023;42.0;29.8;Coho
+C003;Centro C;Aysén;850;50.3;31.1;Atlantico
+C004;Centro D;Calbuco;900;28.7;27.9;Trucha
+C005;Centro E;Melinka;1650;40.2;30.5;Coho
+C006;Centro F;Valdivia;2000;67.4;25.6;Trucha
+C007;Centro G;Ancud;787;45.3;31.2;Atlantico
