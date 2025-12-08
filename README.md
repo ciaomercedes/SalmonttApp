@@ -32,14 +32,14 @@ actividad de esta semana. El programa permite:
 ## ✔️ Nueva funcionalidad incorporada (actividad)
 Se agregó una jerarquía de clases, para modelar unidades operativas generales de la empresa:
 
-* Superclase `UnidadOperativa` (nombre y comuna).
+* Superclase `UnidadOperativa` (abstracta): contiene los atributos `nombre` y `comuna`, y define el método abstracto 
+`mostrarInformacion()` que debe ser sobrescrito por las subclases.
     * Subclases:
-      * `CentroCultivo`
-      * `PlantaProceso` (nueva subclase).
-
-* Un nuevo gestor: `GestorUnidades`, que crea instancias de prueba para ambas subclases.
-* La clase Main ahora imprime estas unidades operativas como parte de la actividad sin afectar la lógica original del 
-programa.
+      * `CentroCultivo` (sobrescribe mostrarInformacion() mostrando datos completos del centro)
+      * `PlantaProceso` (sobrescribe mostrarInformacion() mostrando datos específicos de la planta de procesamiento)
+* Polimorfismo:
+En la clase Main, se recorre una lista de tipo List<UnidadOperativa> y se invoca mostrarInformacion() desde 
+referencias de tipo UnidadOperativa. Cada subclase despliega su información específica.
 
 ---
 ## 🧱 Estructura general del proyecto
@@ -47,25 +47,25 @@ programa.
 ```
 salmonttApp/
 📁 src/
-├── ui/                     # Paquete `ui` donde guardamos la clase principal
-  └── Main.java             # Clase `Main` que orquesta la aplicación y donde está el menu interactivo
+├── ui/                     # Paquete `ui` para la clase principal
+  └── Main.java             # Clase principal que orquesta la aplicación y muestra el menu interactivo
   
-└── model/                  # Paquete `model` donde guardamos las clases de dominio  
-  └── CentroCultivo.java    # Clase `CentroCultivo` crea los atributos de los centros de pezca
-  └── Producto.java         # Clase `Producto` crea los atributos de los productos
-  └── PlantaProceso.java    # Clase `PlantaProceso` subclase de la jerarquia
-  └── UnidadOperativa.java  # Clase `UnidadOperativa` superclase de la jerarquia
+└── model/                  # Paquete `model` que guarda las clases de dominio  
+  └── CentroCultivo.java    # Subclase que representa centros de cultivo
+  └── Producto.java         # Clase para inventario de productos
+  └── PlantaProceso.java    # Subclase que representa plantas de procesamiento
+  └── UnidadOperativa.java  # Superclase abstracta para unidades operativas
   
 └── data/                   # Paquete `data` donde manipulamos y vinculamos los archivos
-  └── GestorDatos.java      # Clase `GestorDatos` donde gestionamos los datos externos o internos
-  └── GestorUnidades.java   # Clase `GestorUnidades` crea instancias de prueba de la jerarquía
+  └── GestorDatos.java      # Clase que gestiona la lectura de archivos y carga/guarda inventario
+  └── GestorUnidades.java   # Clase que crea instancias de prueba de unidades operativas
   
-└── service/                # Paquete `data` donde manipulamos y vinculamos los archivos
-  └── Buscador.java         # Clase `Buscador` donde gestionamos métodos de búsqueda y filtrado
-  └── Validador.java        # Clase `Validador` donde gestionamos validaciones de inputs de usuario
+└── service/                # Paquete `service` que guarda validaciones y filtros
+  └── Buscador.java         # Clase con métodos de búsqueda y filtrado de centros y productos
+  └── Validador.java        # Clase con validaciones de inputs de usuario
   
 ├── resources/              # Carpeta `resources` donde se guardan los datos externos
-  └── centros.txt           # Archivo externo `centros`
+  └── centros.txt           # Archivo externo con datos de centros de cultivo
   
 ```
 ### 📦 Paquete: `ui`
@@ -75,11 +75,12 @@ del menú es posible crear y descargar una lista con las existencias actuales de
 
 ### 📦 Paquete: `model`
 
-- **`CentroCultivo`**: Clase hija que representa un centro de cultivo de la empresa. Aqui se guardan sus datos operacionales
+- **`CentroCultivo`**: Subclase que representa un centro de cultivo de la empresa. Aqui se guardan sus datos operacionales
+y extiende atributos desde `UnidadOperativa`.
 - **`Producto`**: Clase que encapsula los datos de los productos y representa inventario.
-- **`PlantaProceso`**: Clase hija que representa plantas de procesamiento de salmón
-- **`UnidadOperativa`**: Superclase/clase padre que entrega nombre y comuna y extiende sus atributos a las clases hijas.
-Contiene atributos comunes (nombre, comuna).
+- **`PlantaProceso`**: Subclase que representa plantas de procesamiento de salmón y extiende atributos de `UnidadOperativa`
+- **`UnidadOperativa`**: Superclase abstracta que entrega nombre y comuna y extiende sus atributos a las 
+clases hijas.
 
 ### 📦 Paquete: `data`
 
@@ -100,7 +101,9 @@ o textos que no estén vacíos.
 ## 📄 Ejemplos en tiempo real
 **Ejemplo 1: Jerarquía UnidadOperativa (Actividad de esta semana)**
 
-Al iniciar el programa, antes del menú, se mostrarán objetos creados desde GestorUnidades:
+Al iniciar el programa, antes del menú, se mostrarán objetos creados desde GestorUnidades.
+Este ejemplo muestra polimorfismo y sobrescritura de métodos, donde cada subclase despliega su propia información usando
+referencias de tipo UnidadOperativa.
 
 ```
 ===== UNIDADES OPERATIVAS DE PRUEBA =====
@@ -192,11 +195,11 @@ Tipo de salmón: Atlantico
 1. Abre IntelliJ.
 2. Crea un nuevo **Proyecto Java** y ponle el nombre `SalmonttApp`.
 3. Copia los archivos del proyecto en las carpetas correspondientes:
-    * `model` → para las clases `CentroCultivo`, `Producto`, `PlantaProceso` y `UnidadOperativa`.
-    * `ui` → para la clase `Main`.
-    * `data` → para la clase `GestorDatos` y `GestorUnidades`.
-    * `service` → para las clases `Buscador` y `Validador`.
-    * `resources` → para dejar disponible el archivo `centros.txt`.
+    * `model` → `CentroCultivo`, `Producto`, `PlantaProceso`, `UnidadOperativa`.
+    * `ui` → `Main`.
+    * `data` → `GestorDatos`, `GestorUnidades`.
+    * `service` → `Buscador`, `Validador`.
+    * `resources` → `centros.txt`.
 4. Haz click derecho sobre la clase `Main` y busca la opcion: **Run 'Main.main()'**. También puedes ir directamente
    a la pestaña Main.java y en la parte superior derecha dale click al botón verde similar a darle "play" en una radio.
 5. La compilación del programa arrojará:

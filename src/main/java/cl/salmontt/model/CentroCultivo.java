@@ -5,35 +5,31 @@ package cl.salmontt.model;
 * Aqui se guardan sus datos operacionales
 + */
 
-public class CentroCultivo {
+public class CentroCultivo extends UnidadOperativa {
 
     // Atributos privados
     private String idCentro;
-    private String nombre;
-    private String comuna;
-    private int toneladas;
+    private int toneladasProduccion;
     private double profundidadAgua;
     private double salinidad;
     private String tipoSalmon;
 
     /**
-     * @param idCentro          identificador único del centro
-     * @param nombre            nombre del centro
-     * @param comuna            comuna donde está ubicado el centro
-     * @param toneladas         toneladas producidas
-     * @param profundidadAgua   medido en metros
-     * @param salinidad         medido en PSU (Unidades Prácticas de Salinidad = Gr. de sal por Kg. de agua)
-     * @param tipoSalmon    tipo de salmon que se cosecha
+     * @param idCentro              identificador único del centro
+     * @param toneladasProduccion   toneladas producidas
+     * @param profundidadAgua       medido en metros
+     * @param salinidad             medido en PSU (Unidades Prácticas de Salinidad = Gr. de sal por Kg. de agua)
+     * @param tipoSalmon            tipo de salmon que se cosecha
      */
 
 
     //Constructor con parámetros que inicializa todos los campos del centro.
 
-    public CentroCultivo(String idCentro, String nombre, String comuna, int toneladas, double profundidadAgua, double salinidad, String tipoSalmon) {
+    public CentroCultivo(String idCentro, String nombre, String comuna, int toneladasProduccion,
+                         double profundidadAgua, double salinidad, String tipoSalmon) {
+        super(nombre, comuna);
         this.idCentro = idCentro;
-        this.nombre = nombre;
-        this.comuna = comuna;
-        this.toneladas = toneladas;
+        this.toneladasProduccion = toneladasProduccion;
         this.profundidadAgua = profundidadAgua;
         this.salinidad = salinidad;
         this.tipoSalmon = tipoSalmon;
@@ -41,17 +37,12 @@ public class CentroCultivo {
 
     //getter y setter para los filtros en la clase principal
 
-
-    public String getNombre() {
-        return nombre;
-    }
-
     public String getTipoSalmon() {
         return tipoSalmon;
     }
 
     public int getToneladas() {
-        return toneladas;
+        return toneladasProduccion;
     }
 
     public String getIdCentro() {
@@ -65,11 +56,24 @@ public class CentroCultivo {
      */
 
     @Override
+    public void mostrarInformacion() {
+        System.out.println(">>> CENTRO DE CULTIVO <<<");
+        System.out.println("ID: " + idCentro);
+        System.out.println("Nombre: " + getNombre());
+        System.out.println("Comuna: " + getComuna());
+        System.out.println("Toneladas: " + toneladasProduccion + " t.");
+        System.out.println("Profundidad Agua: " + profundidadAgua + " mts.");
+        System.out.println("Salinidad: " + salinidad + " PSU");
+        System.out.println("Tipo Salmón: " + tipoSalmon);
+        System.out.println("----------------------------------------------------------------------------");
+    }
+
+    @Override
     public String toString(){
-        return "ID Centro: " + idCentro +
-                "\nNombre: " + nombre +
-                "\nComuna: " + comuna +
-                "\nProducción: " + toneladas + " t." +
+        return ">>> CENTRO DE CULTIVO <<<\n" +
+                "\nID Centro: " + idCentro +
+                super.toString() +
+                "\nProducción: " + toneladasProduccion + " t." +
                 "\nProfundidad del Agua: " + profundidadAgua + " mts." +
                 "\nSalinidad: " + salinidad + " PSU" +
                 "\nTipo de salmón: " + tipoSalmon +
