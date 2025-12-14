@@ -2,6 +2,7 @@ package cl.salmontt.ui;
 
 import cl.salmontt.data.GestorDatos;
 import cl.salmontt.data.GestorUnidades;
+import cl.salmontt.data.GestorEntidades;
 import cl.salmontt.model.CentroCultivo;
 import cl.salmontt.model.Producto;
 import cl.salmontt.model.UnidadOperativa;
@@ -29,14 +30,17 @@ public class Main {
         //crear el gestor de datos {@Link GestorDatos}
         GestorDatos gestor = new GestorDatos();
 
+        // crear gestor de entidades (empleados, proveedores, etc.)
+        GestorEntidades gestorEntidades = new GestorEntidades();
+
         //cargar el archivo "centros.txt"
         ArrayList<CentroCultivo> centros = gestor.cargarCentros("centros.txt");
 
-        mostrarMenu(centros, input, gestor); //llamamos al manú
+        mostrarMenu(centros, input, gestor, gestorEntidades); //llamamos al manú
     }
 
     //Metodo para el menú
-    public static void mostrarMenu(ArrayList<CentroCultivo> centros, Scanner input, GestorDatos gestor) {
+    public static void mostrarMenu(ArrayList<CentroCultivo> centros, Scanner input, GestorDatos gestor, GestorEntidades gestorEntidades) {
         boolean salir = false;
         while (!salir) { //mientras la opción no sea salir, mostramos el menu
             System.out.println("\n>>>>>Menu<<<<<");

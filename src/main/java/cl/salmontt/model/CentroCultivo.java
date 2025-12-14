@@ -52,24 +52,15 @@ public class CentroCultivo extends UnidadOperativa {
     /**
      * Devuelve una representacion textual del centro,
      *
-     * @return informacion completa del centro
      */
 
     @Override
     public void mostrarInformacion() {
-        System.out.println(">>> CENTRO DE CULTIVO <<<");
-        System.out.println("ID: " + idCentro);
-        System.out.println("Nombre: " + getNombre());
-        System.out.println("Comuna: " + getComuna());
-        System.out.println("Toneladas: " + toneladasProduccion + " t.");
-        System.out.println("Profundidad Agua: " + profundidadAgua + " mts.");
-        System.out.println("Salinidad: " + salinidad + " PSU");
-        System.out.println("Tipo Salmón: " + tipoSalmon);
-        System.out.println("----------------------------------------------------------------------------");
+        System.out.println(this.toString());
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return ">>> CENTRO DE CULTIVO <<<\n" +
                 "\nID Centro: " + idCentro +
                 super.toString() +
@@ -79,4 +70,5 @@ public class CentroCultivo extends UnidadOperativa {
                 "\nTipo de salmón: " + tipoSalmon +
                 "\n----------------------------------------------------------------------------";
     }
+
 }

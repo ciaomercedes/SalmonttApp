@@ -24,7 +24,6 @@ public abstract class UnidadOperativa {
     public abstract void mostrarInformacion(); //obliga a todas las subclases a definir su propia version
 
     //Getters
-
     public String getNombre() {
         return nombre;
     }
