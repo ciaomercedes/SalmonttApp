@@ -22,7 +22,8 @@ public class Empleado extends Persona {
 
     @Override
     public String toString() {
-        return "Empleado: " + nombre + " " + apellido +
+        return "---------------------------" +
+                "Empleado: " + nombre + " " + apellido +
                 "\nRUT: " + rut +
                 "\nCargo: " + cargo +
                 "\nDirección: " + (getDireccion() != null ? getDireccion().toString() : "N/A") +

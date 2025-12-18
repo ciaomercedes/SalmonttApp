@@ -130,10 +130,13 @@ Al elegir la opción “3. Mostrar registros” del MenuGUI, los registros se mu
 Resultado esperado:
 
 ```
+---------------------------
 Empleado: Mercedes Malandrino
 RUT: 12.345.678-9
 Cargo: Analista Programador
 Dirección: Av. Austral 123, Casa, Puerto Montt, Los Lagos
+---------------------------
+→ Tipo: Empleado
 ---------------------------
 Centro de Cultivo: Centro A
 Comuna: Puerto Montt
@@ -141,6 +144,8 @@ Producción: 1200 t.
 Profundidad del Agua: 35.5 mts.
 Salinidad: 30.2 PSU
 Tipo de salmón: Atlantico
+---------------------------
+→ Tipo: Centro de Cultivo
 ---------------------------
 ```
 

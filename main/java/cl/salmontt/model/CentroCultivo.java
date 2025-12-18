@@ -66,7 +66,8 @@ public class CentroCultivo extends UnidadOperativa implements Registrable {
 
     @Override
     public String toString() {
-        return ">>> CENTRO DE CULTIVO <<<\n" +
+        return  "---------------------------" +
+                ">>> CENTRO DE CULTIVO <<<\n" +
                 "\nID Centro: " + idCentro +
                 super.toString() +
                 "\nProducción: " + toneladasProduccion + " t." +
