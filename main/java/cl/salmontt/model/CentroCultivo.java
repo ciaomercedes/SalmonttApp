@@ -5,7 +5,7 @@ package cl.salmontt.model;
 * Aqui se guardan sus datos operacionales
 + */
 
-public class CentroCultivo extends UnidadOperativa {
+public class CentroCultivo extends UnidadOperativa implements Registrable {
 
     // Atributos privados
     private String idCentro;
@@ -52,11 +52,20 @@ public class CentroCultivo extends UnidadOperativa {
     /**
      * Devuelve una representacion textual del centro,
      *
-     * @return informacion completa del centro
      */
 
     @Override
-    public String toString(){
+    public void mostrarResumen() {
+        System.out.println("Centro de Cultivo: " + getNombre() + ", ID: " + idCentro);
+    }
+
+    @Override
+    public void mostrarInformacion() {
+        System.out.println(this);
+    }
+
+    @Override
+    public String toString() {
         return ">>> CENTRO DE CULTIVO <<<\n" +
                 "\nID Centro: " + idCentro +
                 super.toString() +
@@ -64,6 +73,7 @@ public class CentroCultivo extends UnidadOperativa {
                 "\nProfundidad del Agua: " + profundidadAgua + " mts." +
                 "\nSalinidad: " + salinidad + " PSU" +
                 "\nTipo de salmón: " + tipoSalmon +
-                "\n----------------------------------------------------------------------------";
+                "\n---------------------------";
     }
+
 }

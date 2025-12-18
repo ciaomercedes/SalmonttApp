@@ -1,14 +1,14 @@
 package cl.salmontt.model;
 
 /**
-* Superclase que entrega nombre y comuna
+* Superclase que entrega nombre y comuna. Superclase del tipo abstracta para que no se puedan crear instancias directas
 */
 
-public class UnidadOperativa {
+public abstract class UnidadOperativa {
 
-    //Atributos privados
-    String nombre;
-    String comuna;
+    //Atributos protegidos
+    protected String nombre;
+    protected String comuna;
 
     /**
     * @param nombre     nombre de la unidad operativa
@@ -21,8 +21,9 @@ public class UnidadOperativa {
         this.comuna = comuna;
     }
 
-    //Getters
+    public abstract void mostrarInformacion(); //obliga a todas las subclases a definir su propia version
 
+    //Getters
     public String getNombre() {
         return nombre;
     }
@@ -34,6 +35,7 @@ public class UnidadOperativa {
     @Override
     public String toString() {
         return "\nNombre: " + nombre +
-                "\nComuna: " + comuna;
+                "\nComuna: " + comuna +
+                "\n---------------------------";
     }
 }

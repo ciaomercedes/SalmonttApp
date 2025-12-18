@@ -6,7 +6,6 @@ package cl.salmontt.model;
  * UnidadOperativa
  */
 
-
 public class PlantaProceso extends UnidadOperativa{
 
     //Atributos privados
@@ -21,6 +20,16 @@ public class PlantaProceso extends UnidadOperativa{
     }
 
     @Override
+    public void mostrarInformacion() {
+        System.out.println(">>> PLANTA DE PROCESO <<<");
+        System.out.println("Nombre: " + getNombre());
+        System.out.println("Comuna: " + getComuna());
+        System.out.println("Capacidad Proceso: " + capacidadProceso + " t/día");
+        System.out.println("Exporta?: " + (exporta ? "Si" : "No"));
+        System.out.println("----------------------------------------------------------------------------");
+    }
+
+    @Override
     public String toString() {
         return ">>> PLANTA DE PROCESO <<<\n" +
                 super.toString() +
@@ -28,6 +37,4 @@ public class PlantaProceso extends UnidadOperativa{
                 "\nExporta?: " + (exporta ? "Sí" : "No") +
                 "\n--------------------------------------------";
         }
-
-
 }

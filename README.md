@@ -29,24 +29,28 @@ actividad de esta semana. El programa permite:
 - ✔️ Buscar/filtrar centros por ID, tipo de salmón o producción (>= 1000 toneladas).
 - ✔️ Gestionar un inventario de productos (salmón, trucha, etc.) y filtrarlo por nombre de producto.
 - ✔️ Guardar el inventario en un archivo ```inventario.txt```
-- ✔️ Registrar y consultar ```Empleados``` y ```Proveedores``` mediante una GUI independiente.
+### Nuevo
+- ✔️ Registrar y consultar ```Empleados``` y ```CentroCultivo``` mediante una GUI independiente.
+  * Se utilizan ventanas JOptionPane para solicitar datos de manera interactiva. 
+  * La clase MenuGUI permite crear y almacenar las entidades en GestorEntidades.
+- ✔️ Validación de inputs mediante la clase Validador:
+  * Se controla que los campos sean del tipo adecuado (String, int, double) y no estén vacíos. 
+  * Si el usuario ingresa un valor incorrecto, se repite la solicitud hasta obtener un dato válido.
+- ✔️ Mejora en la visualización de registros:
 
-## ✔️ Nueva funcionalidad incorporada (actividad)
-Se agregó una jerarquía de clases, para modelar unidades operativas generales de la empresa:
+## ✔️ Nueva funcionalidad incorporada en paquetes:
+service → `Validador`
+- Métodos pedirInt() y pedirDouble() que validan que el input ingresado sea del tipo correcto. 
+- Método pedirDireccion() que crea un objeto Direccion solo si todos los campos son válidos.
 
-* Superclase `UnidadOperativa` (abstracta): contiene los atributos `nombre` y `comuna`, y define el método abstracto 
-`mostrarInformacion()` que debe ser sobrescrito por las subclases.
-    * Subclases:
-      * `CentroCultivo` (sobrescribe mostrarInformacion() mostrando datos completos del centro)
-      * `PlantaProceso` (sobrescribe mostrarInformacion() mostrando datos específicos de la planta de procesamiento)
-* Polimorfismo:
-En la clase Main, se recorre una lista de tipo List<UnidadOperativa> y se invoca mostrarInformacion() desde 
-referencias de tipo UnidadOperativa. Cada subclase despliega su información específica.
-* GUI para Empleados y Proveedores:
-Se creó en el paquete ```ui``` la clase MenuGUI que permite registrar y mostrar ```Empleados``` y ```Proveedores```
-mediante ventanas emergentes (JOptionPane). Este menú funciona de manera independiente y tiene su propio 
-método main(), así mismo, se implemento una nueva clase ```GestorEntidades``` que se encarga de gestionar y
-y validar estos datos mediante un recorrido for-each y el uso de ```instanceof```.
+data → `GestorEntidades`
+- Administra la creación y almacenamiento de Empleados y Proveedores. 
+- Recorre la lista de entidades con for-each y valida tipos usando instanceof. 
+- Permite mostrar la información correctamente mediante toString().
+
+model → `Persona` y `Direccion`
+- Se crea la superclase abstracta `Persona` para una eficiencia y respetar estructura jerárquica en las entidades humanas.
+- Se crea la clase `Direccion` que representará un domicilio para las entidades humanas que se creen.
 
 ---
 ## 🧱 Estructura general del proyecto
@@ -60,17 +64,19 @@ salmonttApp/
   
 └── model/                  # Paquete `model` que guarda las clases de dominio  
   └── CentroCultivo.java    # Subclase que representa centros de cultivo
+  └── Direccion.java        # Nuevo: Clase que representa una direccion
+  └── Persona.java          # Nueva: Superclase abstracta para entidades humanas
   └── Producto.java         # Clase para inventario de productos
   └── PlantaProceso.java    # Subclase que representa plantas de procesamiento
   └── UnidadOperativa.java  # Superclase abstracta para unidades operativas
-  └── Empleado.java         # Nuevo: representa un empleado de la empresa
-  └── Proveedor.java        # Nuevo: representa un proveedor de la empresa
+  └── Empleado.java         # Representa un empleado de la empresa
+  └── Proveedor.java        # Representa un proveedor de la empresa
   └── Registrable.java      # Interfaz común para entidades registrables
   
 └── data/                   # Paquete `data` donde manipulamos y vinculamos los archivos
   └── GestorDatos.java      # Clase que gestiona la lectura de archivos y carga/guarda inventario
   └── GestorUnidades.java   # Clase que crea instancias de prueba de unidades operativas
-  └── GestorEntidades.java  # Nuevo: gestiona las entidades registrables (empleados, proveedores)
+  └── GestorEntidades.java  # Gestiona las entidades registrables (empleados, proveedores)
   
 └── service/                # Paquete `service` que guarda validaciones y filtros
   └── Buscador.java         # Clase con métodos de búsqueda y filtrado de centros y productos
@@ -97,6 +103,8 @@ clases hijas.
 - **`Empleado`**: Clase que representa un empleado y extiende la interfaz `Registrable`.
 - **`Proveedor`**: Clase que representa un proveedor y extiende la interfaz `Registrable`.
 - **`Registrable`**: Interfaz que define un contrato común para entidades registrables.
+- **`Persona`**: Superclase abstracta para entidades humanas
+- **`Direccion`**: Clase que representa una dirección
 
 ### 📦 Paquete: `data`
 
@@ -116,21 +124,24 @@ o textos que no estén vacíos.
 
 ---
 ## 📄 Ejemplos en tiempo real
-**Ejemplo 1: GUI de Empleados y Proveedores (Actividad de esta semana)**
+**Ejemplo 1: GUI de Caso 3 – Mostrar registros:**
 
-Al ejecutar MenuGUI.main(), se muestran ventanas emergentes para ingresar proveedor, empleado o ver los registros guardados.
-Se debe primero ingresar el numero de la acción y posteriormente el dato a ingresar.
-
-```
-1. Ingresar Proveedor 
-2. Ingresar Empleado 
-3. Mostrar registros
-0. Salir
-```
+Al elegir la opción “3. Mostrar registros” del MenuGUI, los registros se muestran de forma clara.
 Resultado esperado:
+
 ```
-Pescado Feliz (Pescadería)
-Pablo Perez - Pescador
+Empleado: Mercedes Malandrino
+RUT: 12.345.678-9
+Cargo: Analista Programador
+Dirección: Av. Austral 123, Casa, Puerto Montt, Los Lagos
+---------------------------
+Centro de Cultivo: Centro A
+Comuna: Puerto Montt
+Producción: 1200 t.
+Profundidad del Agua: 35.5 mts.
+Salinidad: 30.2 PSU
+Tipo de salmón: Atlantico
+---------------------------
 ```
 
 **Ejemplo 2: Archivo `centros.txt`**
