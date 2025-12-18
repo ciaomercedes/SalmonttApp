@@ -58,7 +58,7 @@ model → `Persona` y `Direccion`
 ```
 salmonttApp/
 📁 src/
-├── ui/                     # Paquete `ui` para la clase principal
+├── app/                    # Paquete `ui` para la clase principal
   └── Main.java             # Clase principal que orquesta la aplicación y muestra el menu interactivo
   └── MenuGUI.java          # GUI independiente para registrar Empleados y Proveedores
   
@@ -78,7 +78,7 @@ salmonttApp/
   └── GestorUnidades.java   # Clase que crea instancias de prueba de unidades operativas
   └── GestorEntidades.java  # Gestiona las entidades registrables (empleados, proveedores)
   
-└── service/                # Paquete `service` que guarda validaciones y filtros
+└── utils/                  # Paquete `service` que guarda validaciones y filtros
   └── Buscador.java         # Clase con métodos de búsqueda y filtrado de centros y productos
   └── Validador.java        # Clase con validaciones de inputs de usuario
   
@@ -86,7 +86,7 @@ salmonttApp/
   └── centros.txt           # Archivo externo con datos de centros de cultivo
   
 ```
-### 📦 Paquete: `ui`
+### 📦 Paquete: `app`
 - **`Main`**: Clase que contiene el menpú principal que orquesta el programa. Muestra primero una visualización de las
 plantas de producción heredando atributos de la clase padre, muestra los resultados buscados por consola y con las opciones
 del menú es posible crear y descargar una lista con las existencias actuales de los productos.
@@ -113,7 +113,7 @@ carga y guarda el inventario desde la clase.
 - **`GestorUnidades`**: Clase la cual crea instancias de prueba de la jerarquía Padre > hijo a través de un arreglo.
 - **`GestorEntidades`**: Gestiona la creación y almacenamiento de Empleados y Proveedores.
 
-### 🧠 Carpeta: `service`
+### 🧠 Carpeta: `utils`
 - **`Buscador`**: La clase 'Buscador' permitirá hacer la búsqueda por ID, tipo de salmón, producción o todos los centros
 Así mismo, almacena el metodo para buscar productos por nombre.
 - **`Validador`**: Clase que se encarga de validar los inputs ingresados por consola. Valida numeros enteros, decimales
