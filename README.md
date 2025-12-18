@@ -39,7 +39,7 @@ actividad de esta semana. El programa permite:
 - ✔️ Mejora en la visualización de registros:
 
 ## ✔️ Nueva funcionalidad incorporada en paquetes:
-service → `Validador`
+utils → `Validador`
 - Métodos pedirInt() y pedirDouble() que validan que el input ingresado sea del tipo correcto. 
 - Método pedirDireccion() que crea un objeto Direccion solo si todos los campos son válidos.
 
